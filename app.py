@@ -12,7 +12,15 @@ st.markdown("Upload beberapa file **BAGAN IMPORT** (Excel) sekaligus, lalu gabun
 # INPUT DARI USER
 # ==========================================
 st.subheader("1. Pengaturan Data")
-periode_check = st.text_input("Masukkan Periode Check (Contoh: 31/1/2026)", value="31/1/2026")
+# Menampilkan kalender (default ke tanggal hari ini)
+tanggal_pilih = st.date_input(
+    "Pilih Periode Check", 
+    value=datetime.date.today(), # Set otomatis ke hari ini
+    format="DD/MM/YYYY" # Format tampilan kalender
+)
+
+# Mengubah format kalender menjadi teks (String) agar rapi saat masuk ke Excel
+periode_check = tanggal_pilih.strftime("%d/%m/%Y")
 
 st.subheader("2. Upload File Excel")
 # Allow multiple files
